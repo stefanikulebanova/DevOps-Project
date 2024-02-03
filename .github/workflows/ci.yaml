@@ -3,7 +3,7 @@ name: CI Pipeline
 on:
   push:
     branches:
-      - main
+      - "main"
 
 jobs:
   push_to_registry:
@@ -18,9 +18,3 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v4
-        with:
-          push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/kiii-project:latest
