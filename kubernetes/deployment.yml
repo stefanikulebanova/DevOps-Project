@@ -42,6 +42,12 @@ spec:
             - configMapRef:
                 name: kiii-project-config
           env:
+            - name: POSTGRES_DB
+              value: "postgres"
+            - name: POSTGRES_USER
+              value: "postgres"
+            - name: POSTGRES_HOST
+              value: kiii-project-postgres-service
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:

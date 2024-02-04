@@ -55,6 +55,10 @@ spec:
             - configMapRef:
                 name: kiii-project-postgres-config
           env:
+            - name: POSTGRES_DB
+              value: "postgres"
+            - name: POSTGRES_USER
+              value: "postgres"
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -65,7 +69,7 @@ spec:
               name: postgres-port
           volumeMounts:
             - name: kiii-project-postgres-data
-              mountPath: pgdata:/var/lib/postgresql/data
+              mountPath: /var/lib/postgresql/data
       volumes:
         - name: kiii-project-postgres-data
           persistentVolumeClaim:
