@@ -1,0 +1,45 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: kiii-project
+  namespace: argocd
+spec:
+  sourceRepos:
+  - 'https://github.com/stefanikulebanova/DevOps-Project'
+  destinations:
+  - namespace: artege
+    server: 'https://kubernetes.default.svc'
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: artege-app
+  namespace: argocd
+spec:
+  destination:
+    namespace: artege
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: kubernetes/
+    repoURL: 'https://github.com/stefanikulebanova/DevOps-Project'
+    targetRevision: d1e6afd
+    directory:
+      recurse: false
+  sources: []
+  project: kiii-project
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: kii-project-role
+  namespace: artege
+rules:
+  - apiGroups: [""]
+    resources: ["services"]
+    verbs: ["get", "list"]
+
+
