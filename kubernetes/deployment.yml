@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kiii-project-config
+  namespace: artege
+data:
+  POSTGRES_URL: kiii-project-postgres-service.artege.svc.cluster.local
+  POSTGRES_DATABASE: postgres
+  POSTGRES_USER: postgres
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: kiii-project-secret
+  namespace: artege
+type: Opaque
+data:
+  password: cG9zdGdyZXM=
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kiii-project-deployment
+  namespace: artege
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: artege_app
+  template:
+    metadata:
+      labels:
+        app: artege_app
+    spec:
+      containers:
+        - name: kiii-project
+          image: stefani01/kiii-project:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: kiii-project-config
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: kiii-project-secret
+                  key: password
+          command: ["python","./manage.py", "runserver", "0.0.0.0:80"]
