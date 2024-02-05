@@ -2,7 +2,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: artege
-  namespace: ns2
+  namespace: kube-system
 spec:
   entryPoints:
     - http
