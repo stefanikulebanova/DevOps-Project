@@ -3,17 +3,14 @@ kind: Ingress
 metadata:
   name: kiii-project-ingress
   namespace: artege
-  annotations:
-    ingress.kubernetes.io/ssl-redirect: "false"
 spec:
-  rules:
-  - host: demo.example.com
-    http:
+ rules:
+  - http:
       paths:
-        - path: /artege-app
-          pathType: Prefix
-          backend:
-            service:
-              name: kiii-project-service
-              port:
-                number: 80
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kiii-project-service
+            port:
+              number: 80
