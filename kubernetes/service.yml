@@ -4,9 +4,10 @@ metadata:
   name: kiii-project-service
   namespace: artege
 spec:
+  type: LoadBalancer
   selector:
     app: artege_app
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 80
+      port: 8000
+      targetPort: 8000
