@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: artege-postgre-migrations
+spec:
+  template:
+    spec:
+      containers:
+        - name: django-job-container
+          image: stefani01/kiii-project:latest
+          args: ["python","./manage.py", "migrate"]
+          envFrom:
+            - configMapRef:
+                name: kiii-project-config
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: kiii-project-postgres-secret
+                  key: password
+      restartPolicy: Never
+  backoffLimit: 2

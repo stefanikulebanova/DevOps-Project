@@ -4,8 +4,8 @@ metadata:
   name: kiii-project-config
   namespace: artege
 data:
-  POSTGRES_URL: kiii-project-postgres-service.artege.svc.cluster.local
-  POSTGRES_DATABASE: postgres
+  POSTGRES_HOST: kiii-project-postgres-service.artege
+  POSTGRES_DB: postgres
   POSTGRES_USER: postgres
 ---
 apiVersion: v1
@@ -15,7 +15,7 @@ metadata:
   namespace: artege
 type: Opaque
 data:
-  password: cG9zdGdyZXM=
+  password: cGFzc3dvcmQ=
 ---
 apiVersion: apps/v1
 kind: Deployment

@@ -3,10 +3,8 @@ kind: Ingress
 metadata:
   name: kiii-project-ingress
   namespace: artege
-  annotations:
-    ingress.kubernetes.io/ssl-redirect: "false"
 spec:
-  rules:
+ rules:
   - http:
       paths:
       - path: /

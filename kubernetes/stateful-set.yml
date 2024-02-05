@@ -65,7 +65,7 @@ spec:
               name: postgres-port
           volumeMounts:
             - name: kiii-project-postgres-data
-              mountPath: pgdata:/var/lib/postgresql/data
+              mountPath: /var/lib/postgresql/data
       volumes:
         - name: kiii-project-postgres-data
           persistentVolumeClaim:
@@ -77,10 +77,8 @@ metadata:
   name: kiii-project-postgres-service
   namespace: artege
 spec:
-  type: LoadBalancer
   ports:
     - port: 5432
       targetPort: 5432
   selector:
-    name: postgres
-    app: artege_app
+    app: postgres
