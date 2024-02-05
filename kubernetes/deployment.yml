@@ -37,7 +37,7 @@ spec:
           image: stefani01/kiii-project:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 8000
+            - containerPort: 80
           envFrom:
             - configMapRef:
                 name: kiii-project-config
@@ -47,4 +47,4 @@ spec:
                 secretKeyRef:
                   name: kiii-project-secret
                   key: password
-          command: ["python","./manage.py", "runserver", "0.0.0.0:8000"]
+          command: ["python","./manage.py", "runserver", "0.0.0.0:80"]
