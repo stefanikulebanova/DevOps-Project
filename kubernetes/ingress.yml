@@ -1,29 +1,15 @@
-apiVersion: v1
-kind: Service
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
 metadata:
-  name: service-1
-  namespace: kube-system
+  name: artege
+  namespace: ns2
 spec:
-  type: ExternalName
-  externalName: service-1.artege.svc.cluster.local
-  ports:
-    - name: http
-      port: 8080
-      protocol: TCP
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  annotations:
-    kubernetes.io/ingress.class: traefik
-  name: kiii-project-ingress
-  namespace: artege
-spec:
-  rules:
-    - host: latest.example.com
-      http:
-        paths:
-          - backend:
-              serviceName: service-1
-              servicePort: 80
-              path: /
+  entryPoints:
+    - http
+  routes:
+    - match: Host(`artege.net`)
+      kind: Rule
+      services:
+        - name: artege
+          namespace: artege
+          port: 80
