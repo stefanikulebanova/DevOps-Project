@@ -55,10 +55,6 @@ spec:
             - configMapRef:
                 name: kiii-project-postgres-config
           env:
-            - name: POSTGRES_DB
-              value: "postgres"
-            - name: POSTGRES_USER
-              value: "postgres"
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -81,10 +77,10 @@ metadata:
   name: kiii-project-postgres-service
   namespace: artege
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
     - port: 5432
       targetPort: 5432
   selector:
     name: postgres
-    app: artege_app
+    app: postgres

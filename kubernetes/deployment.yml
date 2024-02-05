@@ -4,8 +4,8 @@ metadata:
   name: kiii-project-config
   namespace: artege
 data:
-  POSTGRES_URL: kiii-project-postgres-service.artege.svc.cluster.local
-  POSTGRES_DATABASE: postgres
+  POSTGRES_HOST: kiii-project-postgres-service
+  POSTGRES_DB: postgres
   POSTGRES_USER: postgres
 ---
 apiVersion: v1
@@ -42,12 +42,6 @@ spec:
             - configMapRef:
                 name: kiii-project-config
           env:
-            - name: POSTGRES_DB
-              value: "postgres"
-            - name: POSTGRES_USER
-              value: "postgres"
-            - name: POSTGRES_HOST
-              value: kiii-project-postgres-service
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
