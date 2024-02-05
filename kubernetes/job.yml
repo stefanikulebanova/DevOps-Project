@@ -7,7 +7,7 @@ spec:
     spec:
       containers:
         - name: django-job-container
-          image: kiii-project:latest
+          image: stefani01/kiii-project:latest
           args: ["python","./manage.py", "migrate"]
           envFrom:
             - configMapRef:
