@@ -1,16 +1,29 @@
-apiVersion: networking.k8s.io/v1
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-1
+  namespace: kube-system
+spec:
+  type: ExternalName
+  externalName: service-1.artege.svc.cluster.local
+  ports:
+    - name: http
+      port: 8080
+      protocol: TCP
+---
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
+  annotations:
+    kubernetes.io/ingress.class: traefik
   name: kiii-project-ingress
   namespace: artege
 spec:
- rules:
-  - http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: kiii-project-service
-            port:
-              number: 80
+  rules:
+    - host: latest.example.com
+      http:
+        paths:
+          - backend:
+              serviceName: service-1
+              servicePort: 80
+              path: /
