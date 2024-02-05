@@ -7,12 +7,13 @@ metadata:
     ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
-  - http:
+  - host: demo.example.com
+    http:
       paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: kiii-project-service
-            port:
-              number: 80
+        - path: /artege-app
+          pathType: Prefix
+          backend:
+            service:
+              name: kiii-project-service
+              port:
+                number: 80
