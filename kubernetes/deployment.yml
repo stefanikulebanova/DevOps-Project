@@ -4,7 +4,7 @@ metadata:
   name: kiii-project-config
   namespace: artege
 data:
-  POSTGRES_HOST: /var/run/postgresql
+  POSTGRES_HOST: kiii-project-postgres-service.artege
   POSTGRES_DB: postgres
   POSTGRES_USER: postgres
 ---
