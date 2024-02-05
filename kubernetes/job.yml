@@ -7,19 +7,16 @@ spec:
     spec:
       containers:
         - name: django-job-container
-          image: kii-project:latest
+          image: kiii-project:latest
           args: ["python","./manage.py", "migrate"]
+          envFrom:
+            - configMapRef:
+                name: kiii-project-config
           env:
-            - name: DATABASE_USER
-              value: "postgres"
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: kiii-project-postgres-secret
                   key: password
-            - name: DATABASE_HOST
-              value: kiii-project-postgres-0
-            - name: DATABASE_NAME
-              value: "postgres"
       restartPolicy: Never
   backoffLimit: 5
