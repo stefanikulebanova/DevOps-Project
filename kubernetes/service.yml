@@ -4,6 +4,7 @@ metadata:
   name: kiii-project-service
   namespace: artege
 spec:
+  type: LoadBalancer
   selector:
     app: artege_app
   ports:
