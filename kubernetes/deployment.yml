@@ -15,7 +15,7 @@ metadata:
   namespace: artege
 type: Opaque
 data:
-  password: cG9zdGdyZXM=
+  password: cGFzc3dvcmQ=
 ---
 apiVersion: apps/v1
 kind: Deployment
