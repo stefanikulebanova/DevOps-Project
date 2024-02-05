@@ -1,15 +1,16 @@
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
-  name: artege
-  namespace: kube-system
+  name: kiii-project-ingress
+  namespace: artege
 spec:
-  entryPoints:
-    - http
-  routes:
-    - match: Host(`artege.net`)
-      kind: Rule
-      services:
-        - name: artege
-          namespace: artege
-          port: 80
+ rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kiii-project-service
+            port:
+              number: 80
