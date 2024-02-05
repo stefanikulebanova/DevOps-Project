@@ -19,4 +19,4 @@ spec:
                   name: kiii-project-postgres-secret
                   key: password
       restartPolicy: Never
-  backoffLimit: 5
+  backoffLimit: 2

@@ -77,10 +77,8 @@ metadata:
   name: kiii-project-postgres-service
   namespace: artege
 spec:
-  type: ClusterIP
   ports:
     - port: 5432
       targetPort: 5432
   selector:
-    name: postgres
     app: postgres
