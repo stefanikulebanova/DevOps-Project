@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   name: kiii-project-ingress
   namespace: artege
+  className: nginx
 spec:
  rules:
   - http:
