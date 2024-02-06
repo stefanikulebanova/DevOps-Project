@@ -5,7 +5,8 @@ metadata:
   namespace: artege
 spec:
  rules:
-  - http:
+ - host: artege.com
+   http:
       paths:
       - path: /
         pathType: Prefix
